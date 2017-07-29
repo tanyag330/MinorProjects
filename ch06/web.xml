@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/j2ee/dtds/web-app_2_3.dtd">
+
+<web-app>
+
+  <filter>
+    <filter-name>Simple Filter</filter-name>
+    <filter-class>Simple</filter-class>
+  </filter>
+
+  <filter>
+    <filter-name>Chained Filter</filter-name>
+    <filter-class>ch14_04</filter-class>
+  </filter>
+
+  <filter>
+    <filter-name>Init Parameters Filter</filter-name>
+    <filter-class>ch14_06</filter-class>
+    <init-param>
+      <param-name>message</param-name>
+      <param-value>Hello!</param-value>
+    </init-param>
+  </filter>
+
+  <filter>
+    <filter-name>Response Filter</filter-name>
+    <filter-class>ch14_08</filter-class>
+    <init-param>
+      <param-name>message</param-name>
+      <param-value>Hello!</param-value>
+    </init-param>
+  </filter>
+
+  <filter>
+    <filter-name>Logging Filter</filter-name>
+    <filter-class>Logger</filter-class>
+  </filter>
+
+  <filter>
+    <filter-name>Authentication Filter</filter-name>
+    <filter-class>Authenticate</filter-class>
+  </filter>
+
+  <filter>
+    <filter-name>Restricting Filter</filter-name>
+    <filter-class>Restrict</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>Simple Filter</filter-name>
+    <url-pattern>/simple.jsp</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>Simple Filter</filter-name>
+    <url-pattern>/ch14_03.jsp</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>Simple Filter</filter-name>
+    <url-pattern>/ch14_05.jsp</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>Chained Filter</filter-name>
+    <url-pattern>/ch14_05.jsp</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>Init Parameters Filter</filter-name>
+    <url-pattern>/ch14_07.jsp</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>Response Filter</filter-name>
+    <url-pattern>/ch14_09.jsp</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>Logging Filter</filter-name>
+    <url-pattern>/target.jsp</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>Authentication Filter</filter-name>
+    <url-pattern>/loggedin.jsp</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>Restricting Filter</filter-name>
+    <url-pattern>/game.jsp</url-pattern>
+  </filter-mapping>
+
+  <servlet>
+    <servlet-name>ch14_02</servlet-name>
+    <servlet-class>ch14_02</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ch14_02</servlet-name>
+    <url-pattern>/ch14_02</url-pattern>
+  </servlet-mapping>
+
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Secure Area</web-resource-name>
+      <url-pattern>/target.jsp</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>author</role-name>
+    </auth-constraint>
+  </security-constraint>
+
+  <login-config>
+    <auth-method>BASIC</auth-method>
+    <realm-name>Secure Area</realm-name>
+  </login-config>
+
+</web-app>
